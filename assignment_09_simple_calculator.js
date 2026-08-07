@@ -75,3 +75,90 @@
 // =============================================================================
 
 
+const readlineSync = require('readline-sync');
+
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    if (b === 0) {
+        return null;
+    }
+    return a / b;
+}
+
+function modulus(a, b) {
+    return a % b;
+}
+
+function exponent(a, b) {
+    return a ** b;
+}
+
+function getNumbers() {
+    let a = readlineSync.questionFloat('Enter first number : ');
+    let b = readlineSync.questionFloat('Enter second number: ');
+    return { a: a, b: b };
+}
+
+function showMenu() {
+    console.log('============================');
+    console.log('     SIMPLE CALCULATOR');
+    console.log('============================');
+    console.log('1. Addition');
+    console.log('2. Subtraction');
+    console.log('3. Multiplication');
+    console.log('4. Division');
+    console.log('5. Modulus');
+    console.log('6. Exponentiation');
+    console.log('7. Quit');
+}
+
+function main() {
+    let running = true;
+    while (running) {
+        showMenu();
+        let choice = readlineSync.questionInt('Select an operation (1-7): ');
+
+        if (choice === 1) {
+            let n = getNumbers();
+            console.log('Result: ' + n.a + ' + ' + n.b + ' = ' + add(n.a, n.b).toFixed(2));
+        } else if (choice === 2) {
+            let n = getNumbers();
+            console.log('Result: ' + n.a + ' - ' + n.b + ' = ' + subtract(n.a, n.b).toFixed(2));
+        } else if (choice === 3) {
+            let n = getNumbers();
+            console.log('Result: ' + n.a + ' * ' + n.b + ' = ' + multiply(n.a, n.b).toFixed(2));
+        } else if (choice === 4) {
+            let n = getNumbers();
+            let result = divide(n.a, n.b);
+            if (result === null) {
+                console.log('Error: Cannot divide by zero.');
+            } else {
+                console.log('Result: ' + n.a + ' / ' + n.b + ' = ' + result.toFixed(2));
+            }
+        } else if (choice === 5) {
+            let n = getNumbers();
+            console.log('Result: ' + n.a + ' % ' + n.b + ' = ' + modulus(n.a, n.b).toFixed(2));
+        } else if (choice === 6) {
+            let n = getNumbers();
+            console.log('Result: ' + n.a + ' ** ' + n.b + ' = ' + exponent(n.a, n.b).toFixed(2));
+        } else if (choice === 7) {
+            console.log('Goodbye!');
+            running = false;
+        } else {
+            console.log('Invalid choice. Please enter 1-7.');
+        }
+    }
+}
+
+main();
