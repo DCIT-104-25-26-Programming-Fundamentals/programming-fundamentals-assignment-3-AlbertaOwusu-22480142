@@ -51,7 +51,7 @@
 
 const readlineSync = require('readline-sync');
 
-function determineGrade(score) {
+function determineGrades(score){
     if (score < 0 || score > 100) {
         return null;
     }
@@ -70,10 +70,10 @@ function determineGrade(score) {
 
 function main() {
     const score = readlineSync.questionInt('Enter student score (0-100): ');
-    const grade = determineGrade(score);
+    const grade = determineGrades(score);
     if (grade === null) {
         console.log('Error: Score must be between 0 and 100.');
-    } else {
+    } else {6
         console.log(`Grade: ${grade}`);
     }
 }
